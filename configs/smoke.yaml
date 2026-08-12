@@ -1,0 +1,56 @@
+schema_version: "1.0"
+name: cpu-smoke
+seed: 20260812
+
+target:
+  backend: vllm
+  base_url: http://127.0.0.1:18000
+  model: inferscope/fake-model
+  request_type: chat_completions
+  timeout_seconds: 10.0
+
+generation:
+  temperature: 0.0
+  top_p: 1.0
+  max_output_tokens: 8
+  ignore_eos: false
+
+workload:
+  type: synthetic
+  prompt_tokens: 8
+  output_tokens: 8
+  num_requests: 12
+  arrival:
+    mode: concurrency
+    values: [1, 2, 4]
+
+warmup:
+  requests: 2
+  include_in_metrics: false
+
+telemetry:
+  vllm_metrics_url: http://127.0.0.1:18000/metrics
+  gpu_index: 0
+  interval_ms: 500
+
+validation:
+  min_success_rate: 1.0
+  output_token_tolerance_ratio: 0.0
+  token_count_mismatch_ratio: 0.02
+  max_client_loop_lag_ms: 20.0
+  require_clean_gpu: false
+
+slo:
+  ttft_p95_ms: 500.0
+  tpot_p95_ms: 100.0
+  success_rate_min: 1.0
+
+execution:
+  repeats: 1
+  cooldown_seconds: 0.0
+  max_matrix_combinations: 8
+
+output:
+  save_prompts: false
+  save_responses: false
+  formats: [json, csv, markdown]

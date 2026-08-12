@@ -1,0 +1,90 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "inferscope"
+version = "0.1.0"
+description = "SLO-aware LLM inference benchmarking, validation, and tuning toolkit."
+readme = "README.md"
+requires-python = ">=3.11,<3.14"
+license = { text = "Apache-2.0" }
+authors = [{ name = "InferScope Contributors" }]
+dependencies = [
+  "httpx>=0.28.1,<1",
+  "numpy>=2.2,<3",
+  "prometheus-client>=0.21.1,<1",
+  "psutil>=6.1,<8",
+  "pydantic>=2.10,<3",
+  "pyyaml>=6.0.2,<7",
+  "rich>=13.9,<15",
+  "typer>=0.15,<1",
+]
+
+[project.optional-dependencies]
+analysis = [
+  "matplotlib>=3.10,<4",
+  "pandas>=2.2,<4",
+]
+gpu = [
+  "nvidia-ml-py>=12.570,<14",
+]
+server = [
+  "fastapi>=0.115,<1",
+  "torch>=2.6,<3",
+  "transformers>=4.49,<6",
+  "uvicorn>=0.34,<1",
+]
+
+[dependency-groups]
+dev = [
+  "mypy>=1.15,<2",
+  "pytest>=8.3,<10",
+  "pytest-asyncio>=0.25,<2",
+  "pytest-cov>=6,<8",
+  "ruff>=0.9,<1",
+  "types-psutil>=7.0,<8",
+  "types-pyyaml>=6.0,<7",
+]
+
+[project.scripts]
+inferscope = "inferscope.cli:app"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/inferscope"]
+
+[tool.pytest.ini_options]
+addopts = "-ra --strict-markers"
+asyncio_mode = "auto"
+testpaths = ["tests"]
+markers = [
+  "contract: protocol contract tests",
+  "integration: local integration tests",
+  "gpu: tests requiring an NVIDIA GPU",
+  "slow: tests that take more than a few seconds",
+  "benchmark: performance measurements not used as correctness gates",
+]
+
+[tool.coverage.run]
+branch = true
+source = ["inferscope"]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = true
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+packages = ["inferscope"]
+warn_unreachable = true
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "RUF", "ASYNC"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**/*.py" = ["S101"]
