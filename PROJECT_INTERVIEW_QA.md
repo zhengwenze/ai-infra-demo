@@ -1,7 +1,7 @@
 # InferScope 项目面试拷打清单与参考答案
 
-> 适用方向：AI Infra、LLM Serving、推理部署、推理性能测试、模型服务平台实习。  
-> 项目状态：CPU fake server 链路已经验证；真实 RTX 4060 + vLLM 实验、HF baseline 和优化 A/B 尚未完成。  
+> 适用方向：AI Infra、LLM Serving、推理部署、推理性能测试、模型服务平台实习。
+> 项目状态：CPU fake server 链路已经验证；真实 RTX 4060 + vLLM 实验、HF baseline 和优化 A/B 尚未完成。
 > 回答原则：只讲当前代码和实验能够证明的事实，不把规划功能包装成已实现结果。
 
 ## 一、怎么使用这份清单
