@@ -41,7 +41,7 @@
 - 已经完成 Prefix Cache、Chunked Prefill 或量化优化实验；
 - 已经支持 Kubernetes、多机多卡、PD 分离、RDMA 或弹性扩缩容；
 - 已经接入 SGLang、TensorRT-LLM、GuideLLM 或生产 Prometheus/Grafana；
-- 所有 `PROJECT_PROPOSAL.md`、`DEV_DOCUMENT.md` 中的规划功能都已经落地。
+- [项目立项](PROJECT_PROPOSAL.md)与[开发指南](DEVELOPMENT.md)中的规划功能都已经落地。
 
 ## 三、90 秒项目介绍
 
@@ -129,7 +129,7 @@
 
 **参考回答：**
 
-> 原始和聚合机器数据位于 `results/`，人类可读报告位于 `reports/generated/`。这是当前实现的实际布局。两类生成内容都被 gitignore；以后要展示作品，应筛选脱敏样例单独提交，而不是把所有运行数据直接入库。
+> 原始和聚合机器数据位于 `results/`，人类可读报告位于 `reports/generated/`。这是当前实现的实际布局。两类生成内容都被 gitignore；以后要展示作品，应按 [结果证据规则](results/README.md)筛选脱敏且完整的样例，而不是把所有运行数据直接入库。
 
 ### Q14：环境指纹记录了什么？
 

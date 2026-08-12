@@ -10,7 +10,7 @@ if ! command -v nvidia-smi >/dev/null 2>&1; then
   exit 2
 fi
 if ! command -v vllm >/dev/null 2>&1; then
-  echo "vllm executable not found; install the GPU environment documented in README.md." >&2
+  echo "vllm executable not found; install the GPU environment documented in docs/RTX4060_GUIDE.md." >&2
   exit 2
 fi
 
