@@ -67,10 +67,13 @@ bool BlockingQueue::pop(Request& out_request) {
     out_request = std::move(queue_.front());
     queue_.pop_front();
 
-    bool was_full = (capacity_ > 0 && queue_.size() + 1 == capacity_);
+    bool has_bounded_capacity = capacity_ > 0;
     lock.unlock();
 
-    if (was_full) {
+    // 每取走一个请求都会释放一个槽位，因此每次都要唤醒一个可能正在
+    // 等待的生产者。若只在“原队列恰好为满”时通知，一次批量 pop
+    // 释放多个槽位后，其余生产者可能永远收不到通知。
+    if (has_bounded_capacity) {
         not_full_.notify_one();
     }
     return true;

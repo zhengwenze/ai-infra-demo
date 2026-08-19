@@ -25,3 +25,14 @@ add_executable(mini-scheduler ${SOURCES})
 # 线程库
 find_package(Threads REQUIRED)
 target_link_libraries(mini-scheduler PRIVATE Threads::Threads)
+
+include(CTest)
+if(BUILD_TESTING)
+    add_executable(blocking-queue-test
+        tests/blocking_queue_test.cpp
+        src/blocking_queue.cpp
+    )
+    target_link_libraries(blocking-queue-test PRIVATE Threads::Threads)
+    add_test(NAME blocking-queue-multiple-waiters COMMAND blocking-queue-test)
+    set_tests_properties(blocking-queue-multiple-waiters PROPERTIES TIMEOUT 5)
+endif()
