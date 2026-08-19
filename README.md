@@ -244,6 +244,7 @@ bash -n scripts/*.sh
 | [结果证据](docs/results/README.md) | 发布性能结论必须附带哪些文件？ |
 | [项目立项](docs/PROJECT_PROPOSAL.md) | 为什么做、范围是什么、下一步是什么？ |
 | [项目面试问答](docs/INTERVIEW_QA.md) | 如何基于真实代码解释设计与局限？ |
+| [30 天学习计划](docs/30_DAY_AI_INFRA_PLAN.md) | 如何按天完成系统基础、推理原理、vLLM 与项目实验？ |
 | [AI Infra 学习路线](docs/LEARNING_ROADMAP.md) | 如何围绕求职补齐基础与项目能力？ |
 ## License
 
